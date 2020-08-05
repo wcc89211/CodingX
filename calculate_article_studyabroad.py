@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib.font_manager import FontProperties
 
 school=[]              # 宣告school為空list
-fi=open("schools.txt","r")      # find schools.txt and is read mode存到fi
+fi=open("C:/Users/oscar/Desktop/codingx_practice/CodingX/schools.txt","r")  # find schools.txt and is read mode存到fi
 m=fi.read()            # fi read後 存到m
 k=m.split('\n')        # 讀取學校後存成k list
 school.extend(k)       # k list 存入 school list
@@ -21,27 +21,29 @@ class State:
         self.lontitude = lontitude
         self.latitude = latitude
 
-california = State('California', -120.092522, 36.593516 )
-Illinois = State('California', -89.639413, 40.200705 )
-Indiana = State('Indiana', -86.081059, 40.199605)
-Michigan = State('Michigan', -84.913973, 43.829168)
-Minnesota = State('Minnesota', -93.166219, 45.081207)
-Massachusetts = State('Massachusetts', -72.022514, 42.340703)
-New_York = State('New York', -75.536305, 42.783398)
-Texas = State('Texas', -98.993774, 31.603828)
-North_Carolina = State('North Carolina', -79.009322, 35.57369)
-Missouri = State('Missouri', -92.061038, 38.324025)
-London = State('London', -0.112721, 51.542689)
-Goettingen = State('Goettingen', 9.937336, 51.540792)
-Aachen = State('Aachen', 6.065724, 50.781614)
-Munich = State('Munich', 11.550037, 48.158233)
-Hamburg = State('Hamburg', 9.969572, 53.463551)
-Stuttgart = State('Stuttgart', 9.193388, 48.785312)
-Dortmund = State('Dortmund', 7.414254, 51.484394)
-Dresden = State('Dresden', 13.735818, 51.028479)
-UofT = State('UofT', -79.395506, 43.663093)
-McGill = State('McGill', -73.576287, 45.50504)
-Singapore = State('Singapore', 103.890882, 1.352426)
+state_list = []
+
+state_list.append( State('California', -120.092522, 36.593516) )
+state_list.append( State('Illinios', -89.639413, 40.200705) )
+state_list.append( State('Indiana', -86.081059, 40.199605) )
+state_list.append( State('Michigan', -84.913973, 43.829168) )
+state_list.append( State('Minnesota', -93.166219, 45.081207) )
+state_list.append( State('Massachusetts', -72.022514, 42.340703) )
+state_list.append( State('New York', -75.536305, 42.783398) )
+state_list.append( State('Texas', -98.993774, 31.603828) )
+state_list.append( State('North Carolina', -79.009322, 35.57369) )
+state_list.append( State('Missouri', -92.061038, 38.324025) )
+state_list.append( State('London', -0.112721, 51.542689) )
+state_list.append( State('Goettingen', 9.937336, 51.540792) )
+state_list.append( State('Aachen', 6.065724, 50.781614) )
+state_list.append( State('Munich', 11.550037, 48.158233) )
+state_list.append( State('Hamburg', 9.969572, 53.463551) )
+state_list.append( State('Stuttgart', 9.193388, 48.785312) )
+state_list.append( State('Dortmund', 7.414254, 51.484394) )
+state_list.append( State('Dresden', 13.735818, 51.028479) )
+state_list.append( State('UofT', -79.395506, 43.663093) )
+state_list.append( State('McGill', -73.576287, 45.50504) )
+state_list.append( State('Singapore', 103.890882, 1.352426) )
 
 final_list=[]
 for i in range(len(school)):    # 知道幾間學校後，跑幾次迴圈
@@ -56,17 +58,17 @@ for i in range(len(school_list)):
 
     sel = soup.select("div.title a")  # 取HTML標中的 <div class="title"></div> 中的<a>標籤存入sel
     num = 1
-    print(type(sel))
+    #print(type(sel))
     while rq.get(url):
 
 
         for s in sel:
-             print(num, ".  ")
+             """print(num, ".  ")
              print(s.text)
              print("https://www.ptt.cc/" + s["href"])
-             print("---------------------------------------")
+             print("---------------------------------------")"""
              num += 1
-        print("-----------------換頁-------------------")
+        #print("-----------------換頁-------------------")
         try:
             next_page1 = soup.select("div.btn-group.btn-group-paging a")
             url = "https://www.ptt.cc" + next_page1[1]["href"]
@@ -125,10 +127,10 @@ print(state_num)
 
 
 
-for i in range(len(area_list)):      #匯出txt
+for i in range(len(state_list)):      #匯出txt
     #print(str(area_list[i])+','+str(state_num[i])+','+str(coordinate_x[i])+','+str(coordinate_y[i]))
-    file1=open("final.txt","a")
-    file1.write(str(area_list[i])+','+str(state_num[i])+','+str(coordinate_x[i])+','+str(coordinate_y[i])+'\n')
+    file1=open("C:/Users/oscar/Desktop/codingx_practice/reconstruction_prac/final.txt","a")
+    file1.write(str(state_list[i].state_name)+','+str(state_num[i])+','+str(state_list[i].lontitude)+','+str(state_list[i].latitude)+'\n')
     file1.close()
 
 

@@ -72,6 +72,6 @@ for i in range(len(state_list)):
     state_num.append(total_num)
 
 for i in range(len(state_list)):  #export the result into file1 (final.txt)
-    file1=open("C:/Users/oscar/Desktop/codingx_practice/reconstruction_prac/final.txt","a")
+    file1=open("C:/Users/oscar/Desktop/codingx_practice/Refactoring/final.txt","a")
     file1.write(str(state_list[i].state_name)+','+str(state_num[i])+','+str(state_list[i].lontitude)+','+str(state_list[i].latitude)+'\n')
     file1.close()

@@ -1,0 +1,63 @@
+UCLA
+California
+加利福尼亞
+Los Angeles
+UCSD
+San Diego
+聖地牙哥
+USC
+UCB
+Illinois
+UIUC
+伊利諾
+普渡
+Purdue
+MSU
+密西根
+Michigan
+UMN
+明尼蘇達大學
+University of Minnesota
+MIT
+麻省理工
+Massachusetts Institute of Technology
+New York University
+NYU
+CMU
+Cornell
+紐約大學
+Texas
+Austin
+Rice
+Duke
+WUSTL
+King's College London
+倫敦國王學院
+KCL
+LSE
+Oxford
+牛津
+Cambridge
+劍橋
+Goettingen
+哥廷根
+G_ttingen
+阿亨
+RWTH 
+Aachen
+TUM
+M_nchen
+Muenchen
+Munich
+慕尼黑
+TUHH
+Hamburg
+Stuttgart
+斯圖加特
+Dortmund
+Dresden
+UofT
+McGill
+新加坡
+NUS
+NTU

@@ -1,0 +1,8 @@
+# 經緯度的部分希望以class呈現
+# state的list希望可以以更簡潔扼要的方式去寫
+不必要的註解刪除
+sel的變數名稱命名改正
+#area的list修正
+#area 的list改成city_list
+state_num改成state_article_num
+# 變數名稱 fi , m , k 修正

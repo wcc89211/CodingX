@@ -61,7 +61,7 @@ for i in range(len(school_list)):
     print('各大學的查詢熱度',school[i],': ',num)
 
 
-
+# state的list希望可以以更簡潔扼要的方式去寫
 state_num.append(school_num[0]+school_num[1]+school_num[2]+school_num[3]+\
                  school_num[4]+school_num[5]+school_num[6]+school_num[7]+school_num[8])
 state_num.append(school_num[9]+school_num[10]+school_num[11])

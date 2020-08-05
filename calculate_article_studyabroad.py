@@ -1,18 +1,15 @@
 from bs4 import BeautifulSoup
-import re
 import requests as rq
-import csv
-from matplotlib import pyplot as plt
-from matplotlib.font_manager import FontProperties
 
-school=[]              # 宣告school為空list
-fi=open("C:/Users/oscar/Desktop/codingx_practice/CodingX/schools.txt","r")  # find schools.txt and is read mode存到fi
-m=fi.read()            # fi read後 存到m
-k=m.split('\n')        # 讀取學校後存成k list
-school.extend(k)       # k list 存入 school list
-school_list=[]
-school_num=[]
-state_num=[]
+school = []
+file = open("C:/Users/oscar/Desktop/codingx_practice/CodingX/schools.txt","r")  # find schools.txt and is read mode存到fi
+file_content = file.read()  # read the file and extract the content
+school_name = file_content.split('\n')  #split the content and seperate with \n
+school.extend(school_name)  # save the school name into list (school)
+
+school_list = []
+school_num = []
+state_num = []
 
 # creating class
 class State:
@@ -21,8 +18,7 @@ class State:
         self.lontitude = lontitude
         self.latitude = latitude
 
-state_list = []
-
+state_list = []  # append the state attribute to the state_list
 state_list.append( State('California', -120.092522, 36.593516) )
 state_list.append( State('Illinios', -89.639413, 40.200705) )
 state_list.append( State('Indiana', -86.081059, 40.199605) )
@@ -45,100 +41,41 @@ state_list.append( State('UofT', -79.395506, 43.663093) )
 state_list.append( State('McGill', -73.576287, 45.50504) )
 state_list.append( State('Singapore', 103.890882, 1.352426) )
 
-final_list=[]
 for i in range(len(school)):    # 知道幾間學校後，跑幾次迴圈
-    url="https://www.ptt.cc/bbs/studyabroad/search?&q="+school[i]
+    url = "https://www.ptt.cc/bbs/studyabroad/search?&q="+school[i]
     school_list.append(url)
-
 
 for i in range(len(school_list)):
     response = rq.get(school_list[i])
     soup = BeautifulSoup(response.text, "html.parser")  # 指定parser 作為解析器
-    # print(soup.prettify())                 # 把排版後的 html 印出來
-
-    sel = soup.select("div.title a")  # 取HTML標中的 <div class="title"></div> 中的<a>標籤存入sel
+    title = soup.select("div.title a")  # 取HTML標中的 <div class="title"></div> 中的<a>標籤存入title
     num = 1
-    #print(type(sel))
     while rq.get(url):
-
-
-        for s in sel:
-             """print(num, ".  ")
-             print(s.text)
-             print("https://www.ptt.cc/" + s["href"])
-             print("---------------------------------------")"""
+        for s in title:
              num += 1
-        #print("-----------------換頁-------------------")
         try:
             next_page1 = soup.select("div.btn-group.btn-group-paging a")
             url = "https://www.ptt.cc" + next_page1[1]["href"]
-
             response = rq.get(url)
             soup = BeautifulSoup(response.text, "html.parser")
-            sel = soup.select("div.title a")
+            title = soup.select("div.title a")
         except:
             pass
             break
     school_num.append(num)
-      # print(school_num)
     print('各大學的查詢熱度',school[i],': ',num)
 
+limits = [range(0,9), range(9,12), range(12,14), range(14,17), range(17,20), range(20,23), range(23,28,),\
+          range(28,31), range(31,32), range(32,33), range(33,41), range(41,44), range(44,47), range(47,52),\
+          range(52,54), range(54,56), range(56,57), range(57,58), range(58,59), range(59,60), range(60,63)] 
+for i in range(len(limits)):
+    total_num = 0
+    for j in limits[i]:
+        total_num = total_num + school_num[j]
+    state_num.append(total_num)
+    
 
-# state的list希望可以以更簡潔扼要的方式去寫
-state_num.append(school_num[0]+school_num[1]+school_num[2]+school_num[3]+\
-                 school_num[4]+school_num[5]+school_num[6]+school_num[7]+school_num[8])
-state_num.append(school_num[9]+school_num[10]+school_num[11])
-state_num.append(school_num[12]+school_num[13])
-state_num.append(school_num[14]+school_num[15]+school_num[16])
-state_num.append(school_num[17]+school_num[18]+school_num[19])
-state_num.append(school_num[20]+school_num[21]+school_num[22])
-state_num.append(school_num[23]+school_num[24]+school_num[25]+\
-                 school_num[26]+school_num[27])
-state_num.append(school_num[28]+school_num[29]+school_num[30])
-state_num.append(school_num[31])
-state_num.append(school_num[32])
-state_num.append(school_num[33]+school_num[34]+school_num[35]+school_num[36]+school_num[37]+\
-                 school_num[38]+school_num[39]+school_num[40])
-state_num.append(school_num[41]+school_num[42]+school_num[43])
-state_num.append(school_num[44]+school_num[45+school_num[46]])
-state_num.append(school_num[47]+school_num[48]+school_num[49]+school_num[50]+school_num[51])
-state_num.append(school_num[52]+school_num[53])
-state_num.append(school_num[54]+school_num[55])
-state_num.append(school_num[56])
-state_num.append(school_num[57])
-state_num.append(school_num[58])
-state_num.append(school_num[59])
-state_num.append(school_num[60]+school_num[61]+school_num[62])
-
-print(state_num)
-    #import pandas as pd
-
-    #result=[school[i],num]
-    #with open('result.csv','r')as f:
-     # writer=csv.writer(f)
-      #writer.writerow(result)
-    #list=[[school[i],num]]
-    #test=pd.DataFrame(data=list)
-    #df.loc[] = '3'
-    #print(test)
-    #test.to_csv('result.csv',encoding='gbk',header=0,index=0)
-
-
-
-
-
-for i in range(len(state_list)):      #匯出txt
-    #print(str(area_list[i])+','+str(state_num[i])+','+str(coordinate_x[i])+','+str(coordinate_y[i]))
+for i in range(len(state_list)):  #export the result into file1 (final.txt)
     file1=open("C:/Users/oscar/Desktop/codingx_practice/reconstruction_prac/final.txt","a")
     file1.write(str(state_list[i].state_name)+','+str(state_num[i])+','+str(state_list[i].lontitude)+','+str(state_list[i].latitude)+'\n')
     file1.close()
-
-
-    '''final_list.append(str(area_list[i]))
-    final_list.append(str(state_num[i]))
-    final_list.append(str(coordinate_x[i]))
-    final_list.append(str(coordinate_y[i]))'''
-
-'''file1=open("final.txt","a")
-file1.write(final_list)
-file1.close()'''

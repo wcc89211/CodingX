@@ -6,10 +6,10 @@ from matplotlib import pyplot as plt
 from matplotlib.font_manager import FontProperties
 
 school=[]              # 宣告school為空list
-fi=open("schools.txt","r")      # find schools.txt and is read mode存到fi
-m=fi.read()            # fi read後 存到m
-k=m.split('\n')        # 讀取學校後存成k list
-school.extend(k)       # k list 存入 school list
+schools_txt=open("schools.txt","r")      # find schools.txt and is read mode存到fi
+schools_read=schools_txt.read()            # schools_txt 讀取
+k=schools_read.split('\n')        # 讀取後，依"換行"符號，拆開每個學校
+school.extend(k)       # 存入 school
 school_list=[]
 school_num=[]
 state_num=[]
@@ -88,34 +88,10 @@ state_num.append(school_num[59])
 state_num.append(school_num[60]+school_num[61]+school_num[62])
 
 print(state_num)
-    #import pandas as pd
-
-    #result=[school[i],num]
-    #with open('result.csv','r')as f:
-     # writer=csv.writer(f)
-      #writer.writerow(result)
-    #list=[[school[i],num]]
-    #test=pd.DataFrame(data=list)
-    #df.loc[] = '3'
-    #print(test)
-    #test.to_csv('result.csv',encoding='gbk',header=0,index=0)
 
 
-
-
-
-for i in range(len(area_list)):      #匯出txt
-    #print(str(area_list[i])+','+str(state_num[i])+','+str(coordinate_x[i])+','+str(coordinate_y[i]))
+for i in range(len(area_list)):      # 匯出txt
+    # print(str(area_list[i])+','+str(state_num[i])+','+str(coordinate_x[i])+','+str(coordinate_y[i]))
     file1=open("final.txt","a")
     file1.write(str(area_list[i])+','+str(state_num[i])+','+str(coordinate_x[i])+','+str(coordinate_y[i])+'\n')
     file1.close()
-
-
-    '''final_list.append(str(area_list[i]))
-    final_list.append(str(state_num[i]))
-    final_list.append(str(coordinate_x[i]))
-    final_list.append(str(coordinate_y[i]))'''
-
-'''file1=open("final.txt","a")
-file1.write(final_list)
-file1.close()'''
